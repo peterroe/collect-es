@@ -1,26 +1,26 @@
-import clone from '../helpers/clone';
+import clone from '../helpers/clone'
 
 export default function concat(collectionOrArrayOrObject) {
-  let list = collectionOrArrayOrObject;
+  let list = collectionOrArrayOrObject
 
   if (collectionOrArrayOrObject instanceof this.constructor) {
-    list = collectionOrArrayOrObject.all();
-  } else if (typeof collectionOrArrayOrObject === 'object') {
-    list = [];
+    list = collectionOrArrayOrObject.all()
+  }
+  else if (typeof collectionOrArrayOrObject === 'object') {
+    list = []
     Object.keys(collectionOrArrayOrObject).forEach((property) => {
-      list.push(collectionOrArrayOrObject[property]);
-    });
+      list.push(collectionOrArrayOrObject[property])
+    })
   }
 
-  const collection = clone(this.items);
+  const collection = clone(this.items)
 
   list.forEach((item) => {
-    if (typeof item === 'object') {
-      Object.keys(item).forEach(key => collection.push(item[key]));
-    } else {
-      collection.push(item);
-    }
-  });
+    if (typeof item === 'object')
+      Object.keys(item).forEach(key => collection.push(item[key]))
+    else
+      collection.push(item)
+  })
 
-  return new this.constructor(collection);
+  return new this.constructor(collection)
 }

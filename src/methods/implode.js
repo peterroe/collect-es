@@ -1,7 +1,6 @@
 export default function implode(key, glue) {
-  if (glue === undefined) {
-    return this.items.join(key);
-  }
+  if (glue === undefined)
+    return this.items.join(key)
 
-  return new this.constructor(this.items).pluck(key).all().join(glue);
+  return new this.constructor(this.items).pluck(key).all().join(glue)
 }

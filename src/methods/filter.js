@@ -1,58 +1,56 @@
 function falsyValue(item) {
   if (Array.isArray(item)) {
-    if (item.length) {
-      return false;
-    }
-  } else if (item !== undefined && item !== null
+    if (item.length)
+      return false
+  }
+  else if (item !== undefined && item !== null
     && typeof item === 'object') {
-    if (Object.keys(item).length) {
-      return false;
-    }
-  } else if (item) {
-    return false;
+    if (Object.keys(item).length)
+      return false
+  }
+  else if (item) {
+    return false
   }
 
-  return true;
+  return true
 }
 
 function filterObject(func, items) {
-  const result = {};
+  const result = {}
   Object.keys(items).forEach((key) => {
     if (func) {
-      if (func(items[key], key)) {
-        result[key] = items[key];
-      }
-    } else if (!falsyValue(items[key])) {
-      result[key] = items[key];
+      if (func(items[key], key))
+        result[key] = items[key]
     }
-  });
+    else if (!falsyValue(items[key])) {
+      result[key] = items[key]
+    }
+  })
 
-  return result;
+  return result
 }
 
 function filterArray(func, items) {
-  if (func) {
-    return items.filter(func);
-  }
-  const result = [];
+  if (func)
+    return items.filter(func)
+
+  const result = []
   for (let i = 0; i < items.length; i += 1) {
-    const item = items[i];
-    if (!falsyValue(item)) {
-      result.push(item);
-    }
+    const item = items[i]
+    if (!falsyValue(item))
+      result.push(item)
   }
 
-  return result;
+  return result
 }
 
 export default function filter(fn) {
-  const func = fn || false;
-  let filteredItems = null;
-  if (Array.isArray(this.items)) {
-    filteredItems = filterArray(func, this.items);
-  } else {
-    filteredItems = filterObject(func, this.items);
-  }
+  const func = fn || false
+  let filteredItems = null
+  if (Array.isArray(this.items))
+    filteredItems = filterArray(func, this.items)
+  else
+    filteredItems = filterObject(func, this.items)
 
-  return new this.constructor(filteredItems);
+  return new this.constructor(filteredItems)
 }

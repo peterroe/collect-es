@@ -1,3 +1,3 @@
 export default function flatMap(fn) {
-  return this.map(fn).collapse();
+  return this.map(fn).collapse()
 }

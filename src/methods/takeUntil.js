@@ -1,37 +1,33 @@
-import { isArray, isObject, isFunction } from '../helpers/is';
+import { isArray, isFunction, isObject } from '../helpers/is'
 
 export default function takeUntil(valueOrFunction) {
-  let previous = null;
-  let items;
+  let previous = null
+  let items
 
-  let callback = value => value === valueOrFunction;
-  if (isFunction(valueOrFunction)) {
-    callback = valueOrFunction;
-  }
+  let callback = value => value === valueOrFunction
+  if (isFunction(valueOrFunction))
+    callback = valueOrFunction
 
   if (isArray(this.items)) {
     items = this.items.filter((item) => {
-      if (previous !== false) {
-        previous = !callback(item);
-      }
+      if (previous !== false)
+        previous = !callback(item)
 
-      return previous;
-    });
+      return previous
+    })
   }
 
   if (isObject(this.items)) {
     items = Object.keys(this.items).reduce((acc, key) => {
-      if (previous !== false) {
-        previous = !callback(this.items[key]);
-      }
+      if (previous !== false)
+        previous = !callback(this.items[key])
 
-      if (previous !== false) {
-        acc[key] = this.items[key];
-      }
+      if (previous !== false)
+        acc[key] = this.items[key]
 
-      return acc;
-    }, {});
+      return acc
+    }, {})
   }
 
-  return new this.constructor(items);
+  return new this.constructor(items)
 }

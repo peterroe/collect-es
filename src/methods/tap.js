@@ -1,7 +1,5 @@
-
-
 export default function tap(fn) {
-  fn(this);
+  fn(this)
 
-  return this;
+  return this
 }

@@ -1,7 +1,7 @@
-import values from '../helpers/values';
+import values from '../helpers/values'
 
 export default function every(fn) {
-  const items = values(this.items);
+  const items = values(this.items)
 
-  return items.every(fn);
+  return items.every(fn)
 }

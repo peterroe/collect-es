@@ -1,3 +1,3 @@
 export default function sortDesc() {
-  return this.sort().reverse();
-};
+  return this.sort().reverse()
+}

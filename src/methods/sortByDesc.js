@@ -1,3 +1,3 @@
 export default function sortByDesc(valueOrFunction) {
-  return this.sortBy(valueOrFunction).reverse();
-};
+  return this.sortBy(valueOrFunction).reverse()
+}

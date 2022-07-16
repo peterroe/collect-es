@@ -1,11 +1,11 @@
-import values from '../helpers/values';
+import values from '../helpers/values'
 
 export default function nth(n, offset = 0) {
-  const items = values(this.items);
+  const items = values(this.items)
 
   const collection = items
     .slice(offset)
-    .filter((item, index) => index % n === 0);
+    .filter((item, index) => index % n === 0)
 
-  return new this.constructor(collection);
+  return new this.constructor(collection)
 }

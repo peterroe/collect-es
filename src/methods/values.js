@@ -1,5 +1,5 @@
-import getValues from '../helpers/values';
+import getValues from '../helpers/values'
 
 export default function values() {
-  return new this.constructor(getValues(this.items));
+  return new this.constructor(getValues(this.items))
 }

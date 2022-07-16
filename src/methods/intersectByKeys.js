@@ -1,17 +1,15 @@
 export default function intersectByKeys(values) {
-  let intersectKeys = Object.keys(values);
+  let intersectKeys = Object.keys(values)
 
-  if (values instanceof this.constructor) {
-    intersectKeys = Object.keys(values.all());
-  }
+  if (values instanceof this.constructor)
+    intersectKeys = Object.keys(values.all())
 
-  const collection = {};
+  const collection = {}
 
   Object.keys(this.items).forEach((key) => {
-    if (intersectKeys.indexOf(key) !== -1) {
-      collection[key] = this.items[key];
-    }
-  });
+    if (intersectKeys.includes(key))
+      collection[key] = this.items[key]
+  })
 
-  return new this.constructor(collection);
+  return new this.constructor(collection)
 }

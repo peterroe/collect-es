@@ -1,3 +1,3 @@
-import contains from './contains';
+import contains from './contains'
 
-export default contains;
+export default contains

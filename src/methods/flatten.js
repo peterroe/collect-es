@@ -1,51 +1,55 @@
-import { isArray, isObject } from '../helpers/is';
+import { isArray, isObject } from '../helpers/is'
 
 export default function flatten(depth) {
-  let flattenDepth = depth || Infinity;
+  let flattenDepth = depth || Infinity
 
-  let fullyFlattened = false;
-  let collection = [];
+  let fullyFlattened = false
+  let collection = []
 
   const flat = function flat(items) {
-    collection = [];
+    collection = []
 
     if (isArray(items)) {
       items.forEach((item) => {
         if (isArray(item)) {
-          collection = collection.concat(item);
-        } else if (isObject(item)) {
-          Object.keys(item).forEach((property) => {
-            collection = collection.concat(item[property]);
-          });
-        } else {
-          collection.push(item);
+          collection = collection.concat(item)
         }
-      });
-    } else {
+        else if (isObject(item)) {
+          Object.keys(item).forEach((property) => {
+            collection = collection.concat(item[property])
+          })
+        }
+        else {
+          collection.push(item)
+        }
+      })
+    }
+    else {
       Object.keys(items).forEach((property) => {
         if (isArray(items[property])) {
-          collection = collection.concat(items[property]);
-        } else if (isObject(items[property])) {
-          Object.keys(items[property]).forEach((prop) => {
-            collection = collection.concat(items[property][prop]);
-          });
-        } else {
-          collection.push(items[property]);
+          collection = collection.concat(items[property])
         }
-      });
+        else if (isObject(items[property])) {
+          Object.keys(items[property]).forEach((prop) => {
+            collection = collection.concat(items[property][prop])
+          })
+        }
+        else {
+          collection.push(items[property])
+        }
+      })
     }
 
-    fullyFlattened = collection.filter(item => isObject(item));
-    fullyFlattened = fullyFlattened.length === 0;
+    fullyFlattened = collection.filter(item => isObject(item))
+    fullyFlattened = fullyFlattened.length === 0
 
-    flattenDepth -= 1;
-  };
-
-  flat(this.items);
-
-  while (!fullyFlattened && flattenDepth > 0) {
-    flat(collection);
+    flattenDepth -= 1
   }
 
-  return new this.constructor(collection);
+  flat(this.items)
+ /* eslint-disable no-unmodified-loop-conditio */
+  while (!fullyFlattened && flattenDepth > 0)
+    flat(collection)
+
+  return new this.constructor(collection)
 }

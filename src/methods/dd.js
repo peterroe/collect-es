@@ -1,7 +1,6 @@
 export default function dd() {
-  this.dump();
+  this.dump()
 
-  if (typeof process !== 'undefined') {
-    process.exit(1);
-  }
-};
+  if (typeof process !== 'undefined')
+    process.exit(1)
+}

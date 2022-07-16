@@ -1,5 +1,5 @@
 export default function push(...items) {
-  this.items.push(...items);
+  this.items.push(...items)
 
-  return this;
+  return this
 }

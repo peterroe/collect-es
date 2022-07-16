@@ -1,9 +1,8 @@
 export default function keys() {
-  let collection = Object.keys(this.items);
+  let collection = Object.keys(this.items)
 
-  if (Array.isArray(this.items)) {
-    collection = collection.map(Number);
-  }
+  if (Array.isArray(this.items))
+    collection = collection.map(Number)
 
-  return new this.constructor(collection);
-};
+  return new this.constructor(collection)
+}

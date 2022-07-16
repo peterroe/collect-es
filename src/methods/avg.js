@@ -1,3 +1,3 @@
-import average from './average';
+import average from './average'
 
-export default average;
+export default average

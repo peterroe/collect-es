@@ -1,17 +1,15 @@
 export default function diffAssoc(values) {
-  let diffValues = values;
+  let diffValues = values
 
-  if (values instanceof this.constructor) {
-    diffValues = values.all();
-  }
+  if (values instanceof this.constructor)
+    diffValues = values.all()
 
-  const collection = {};
+  const collection = {}
 
   Object.keys(this.items).forEach((key) => {
-    if (diffValues[key] === undefined || diffValues[key] !== this.items[key]) {
-      collection[key] = this.items[key];
-    }
-  });
+    if (diffValues[key] === undefined || diffValues[key] !== this.items[key])
+      collection[key] = this.items[key]
+  })
 
-  return new this.constructor(collection);
-};
+  return new this.constructor(collection)
+}

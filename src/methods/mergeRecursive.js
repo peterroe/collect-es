@@ -1,38 +1,37 @@
 export default function mergeRecursive(items) {
   const merge = (target, source) => {
-    const merged = {};
+    const merged = {}
 
-    const mergedKeys = Object.keys({ ...target, ...source });
+    const mergedKeys = Object.keys({ ...target, ...source })
 
     mergedKeys.forEach((key) => {
       if (target[key] === undefined && source[key] !== undefined) {
-        merged[key] = source[key];
-      } else if (target[key] !== undefined && source[key] === undefined) {
-        merged[key] = target[key];
-      } else if (target[key] !== undefined && source[key] !== undefined) {
-        if (target[key] === source[key]) {
-          merged[key] = target[key];
-        } else if (
+        merged[key] = source[key]
+      }
+      else if (target[key] !== undefined && source[key] === undefined) {
+        merged[key] = target[key]
+      }
+      else if (target[key] !== undefined && source[key] !== undefined) {
+        if (target[key] === source[key])
+          merged[key] = target[key]
+        else if (
           (!Array.isArray(target[key]) && typeof target[key] === 'object')
           && (!Array.isArray(source[key]) && typeof source[key] === 'object')
-        ) {
-          merged[key] = merge(target[key], source[key]);
-        } else {
-          merged[key] = [].concat(target[key], source[key]);
-        }
+        )
+          merged[key] = merge(target[key], source[key])
+        else
+          merged[key] = [].concat(target[key], source[key])
       }
-    });
+    })
 
-    return merged;
-  };
-
-  if (!items) {
-    return this;
+    return merged
   }
 
-  if (items.constructor.name === 'Collection') {
-    return new this.constructor(merge(this.items, items.all()));
-  }
+  if (!items)
+    return this
 
-  return new this.constructor(merge(this.items, items));
-};
+  if (items.constructor.name === 'Collection')
+    return new this.constructor(merge(this.items, items.all()))
+
+  return new this.constructor(merge(this.items, items))
+}

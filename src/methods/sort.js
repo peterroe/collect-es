@@ -1,17 +1,15 @@
-
-
 export default function sort(fn) {
-  const collection = [].concat(this.items);
+  const collection = [].concat(this.items)
 
   if (fn === undefined) {
-    if (this.every(item => typeof item === 'number')) {
-      collection.sort((a, b) => a - b);
-    } else {
-      collection.sort();
-    }
-  } else {
-    collection.sort(fn);
+    if (this.every(item => typeof item === 'number'))
+      collection.sort((a, b) => a - b)
+    else
+      collection.sort()
+  }
+  else {
+    collection.sort(fn)
   }
 
-  return new this.constructor(collection);
+  return new this.constructor(collection)
 }

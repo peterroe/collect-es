@@ -63,7 +63,7 @@ describe('test', () => {
       () => false,
       () => true,
       () => {
-        throw new Error()
+        throw new Error('err')
       },
     ])
 

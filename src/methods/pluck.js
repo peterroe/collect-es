@@ -1,102 +1,98 @@
-import { isArray, isObject } from '../helpers/is';
-import nestedValue from '../helpers/nestedValue';
+import { isArray, isObject } from '../helpers/is'
+import nestedValue from '../helpers/nestedValue'
 
 const buildKeyPathMap = function buildKeyPathMap(items) {
-  const keyPaths = {};
+  const keyPaths = {}
 
   items.forEach((item, index) => {
     function buildKeyPath(val, keyPath) {
       if (isObject(val)) {
         Object.keys(val).forEach((prop) => {
-          buildKeyPath(val[prop], `${keyPath}.${prop}`);
-        });
-      } else if (isArray(val)) {
+          buildKeyPath(val[prop], `${keyPath}.${prop}`)
+        })
+      }
+      else if (isArray(val)) {
         val.forEach((v, i) => {
-          buildKeyPath(v, `${keyPath}.${i}`);
-        });
+          buildKeyPath(v, `${keyPath}.${i}`)
+        })
       }
 
-      keyPaths[keyPath] = val;
+      keyPaths[keyPath] = val
     }
 
-    buildKeyPath(item, index);
-  });
+    buildKeyPath(item, index)
+  })
 
-  return keyPaths;
-};
+  return keyPaths
+}
 
 export default function pluck(value, key) {
-  if (value.indexOf('*') !== -1) {
-    const keyPathMap = buildKeyPathMap(this.items);
+  if (value.includes('*')) {
+    const keyPathMap = buildKeyPathMap(this.items)
 
-    const keyMatches = [];
+    const keyMatches = []
 
     if (key !== undefined) {
-      const keyRegex = new RegExp(`0.${key}`, 'g');
-      const keyNumberOfLevels = `0.${key}`.split('.').length;
+      const keyRegex = new RegExp(`0.${key}`, 'g')
+      const keyNumberOfLevels = `0.${key}`.split('.').length
 
       Object.keys(keyPathMap).forEach((k) => {
-        const matchingKey = k.match(keyRegex);
+        const matchingKey = k.match(keyRegex)
 
         if (matchingKey) {
-          const match = matchingKey[0];
+          const match = matchingKey[0]
 
-          if (match.split('.').length === keyNumberOfLevels) {
-            keyMatches.push(keyPathMap[match]);
-          }
+          if (match.split('.').length === keyNumberOfLevels)
+            keyMatches.push(keyPathMap[match])
         }
-      });
+      })
     }
 
-    const valueMatches = [];
-    const valueRegex = new RegExp(`0.${value}`, 'g');
-    const valueNumberOfLevels = `0.${value}`.split('.').length;
-
+    const valueMatches = []
+    const valueRegex = new RegExp(`0.${value}`, 'g')
+    const valueNumberOfLevels = `0.${value}`.split('.').length
 
     Object.keys(keyPathMap).forEach((k) => {
-      const matchingValue = k.match(valueRegex);
+      const matchingValue = k.match(valueRegex)
 
       if (matchingValue) {
-        const match = matchingValue[0];
+        const match = matchingValue[0]
 
-        if (match.split('.').length === valueNumberOfLevels) {
-          valueMatches.push(keyPathMap[match]);
-        }
+        if (match.split('.').length === valueNumberOfLevels)
+          valueMatches.push(keyPathMap[match])
       }
-    });
+    })
 
     if (key !== undefined) {
-      const collection = {};
+      const collection = {}
 
       this.items.forEach((item, index) => {
-        collection[keyMatches[index] || ''] = valueMatches;
-      });
+        collection[keyMatches[index] || ''] = valueMatches
+      })
 
-      return new this.constructor(collection);
+      return new this.constructor(collection)
     }
 
-    return new this.constructor([valueMatches]);
+    return new this.constructor([valueMatches])
   }
 
   if (key !== undefined) {
-    const collection = {};
+    const collection = {}
 
     this.items.forEach((item) => {
-      if (nestedValue(item, value) !== undefined) {
-        collection[item[key] || ''] = nestedValue(item, value);
-      } else {
-        collection[item[key] || ''] = null;
-      }
-    });
+      if (nestedValue(item, value) !== undefined)
+        collection[item[key] || ''] = nestedValue(item, value)
+      else
+        collection[item[key] || ''] = null
+    })
 
-    return new this.constructor(collection);
+    return new this.constructor(collection)
   }
 
   return this.map((item) => {
-    if (nestedValue(item, value) !== undefined) {
-      return nestedValue(item, value);
-    }
+    if (nestedValue(item, value) !== undefined)
+      return nestedValue(item, value)
 
-    return null;
-  });
+    return null
+  })
 }

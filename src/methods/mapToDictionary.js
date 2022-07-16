@@ -1,15 +1,14 @@
 export default function mapToDictionary(fn) {
-  const collection = {};
+  const collection = {}
 
   this.items.forEach((item, k) => {
-    const [key, value] = fn(item, k);
+    const [key, value] = fn(item, k)
 
-    if (collection[key] === undefined) {
-      collection[key] = [value];
-    } else {
-      collection[key].push(value);
-    }
-  });
+    if (collection[key] === undefined)
+      collection[key] = [value]
+    else
+      collection[key].push(value)
+  })
 
-  return new this.constructor(collection);
-};
+  return new this.constructor(collection)
+}

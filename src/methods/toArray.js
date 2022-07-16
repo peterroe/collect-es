@@ -1,29 +1,31 @@
 export default function toArray() {
-  const collectionInstance = this.constructor;
+  const collectionInstance = this.constructor
 
   function iterate(list, collection) {
-    const childCollection = [];
+    const childCollection = []
 
     if (list instanceof collectionInstance) {
-      list.items.forEach(i => iterate(i, childCollection));
-      collection.push(childCollection);
-    } else if (Array.isArray(list)) {
-      list.forEach(i => iterate(i, childCollection));
-      collection.push(childCollection);
-    } else {
-      collection.push(list);
+      list.items.forEach(i => iterate(i, childCollection))
+      collection.push(childCollection)
+    }
+    else if (Array.isArray(list)) {
+      list.forEach(i => iterate(i, childCollection))
+      collection.push(childCollection)
+    }
+    else {
+      collection.push(list)
     }
   }
 
   if (Array.isArray(this.items)) {
-    const collection = [];
+    const collection = []
 
     this.items.forEach((items) => {
-      iterate(items, collection);
-    });
+      iterate(items, collection)
+    })
 
-    return collection;
+    return collection
   }
 
-  return this.values().all();
-};
+  return this.values().all()
+}

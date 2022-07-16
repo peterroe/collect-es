@@ -1,14 +1,13 @@
-import values from '../helpers/values';
+import values from '../helpers/values'
 
 export default function random(length = null) {
-  const items = values(this.items);
+  const items = values(this.items)
 
-  const collection = new this.constructor(items).shuffle();
+  const collection = new this.constructor(items).shuffle()
 
   // If not a length was specified
-  if (length !== parseInt(length, 10)) {
-    return collection.first();
-  }
+  if (length !== parseInt(length, 10))
+    return collection.first()
 
-  return collection.take(length);
+  return collection.take(length)
 }

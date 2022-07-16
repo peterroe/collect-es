@@ -1,11 +1,9 @@
-
-
 export default function sortKeys() {
-  const ordered = {};
+  const ordered = {}
 
   Object.keys(this.items).sort().forEach((key) => {
-    ordered[key] = this.items[key];
-  });
+    ordered[key] = this.items[key]
+  })
 
-  return new this.constructor(ordered);
+  return new this.constructor(ordered)
 }
