@@ -14,6 +14,7 @@ npm install collect-es
 
 ```ts
 // example
+import collect from 'collect-es'
 
 const collection = collect([
   { name: 'Desk', price: 200 },
