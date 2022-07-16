@@ -1,24 +1,25 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should filter collection to items that are an instance of x', () => {
     const Player = function p(name) {
-      this.name = name;
-    };
+      this.name = name
+    }
 
     const Manager = function p(name) {
-      this.name = name;
-    };
+      this.name = name
+    }
 
-    const Firmino = new Player('Firmino');
-    const Salah = new Player('Salah');
-    const Klopp = new Manager('Klopp');
+    const Firmino = new Player('Firmino')
+    const Salah = new Player('Salah')
+    const Klopp = new Manager('Klopp')
 
-    const collection = collect([Firmino, Salah, Klopp]);
+    const collection = collect([Firmino, Salah, Klopp])
 
-    const filtered = collection.whereInstanceOf(Player);
+    const filtered = collection.whereInstanceOf(Player)
 
-    expect(filtered.all()).to.eql([Firmino, Salah]);
-    expect(collection.all()).to.eql([Firmino, Salah, Klopp]);
-  });
-};
+    expect(filtered.all()).to.eql([Firmino, Salah])
+    expect(collection.all()).to.eql([Firmino, Salah, Klopp])
+  })
+})

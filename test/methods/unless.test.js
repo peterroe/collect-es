@@ -1,21 +1,22 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should execute the given callback when the first argument given to the method evaluates to false', () => {
-    const collection = collect([1, 2, 3]);
+    const collection = collect([1, 2, 3])
 
     collection.unless(false, (c) => {
-      c.push(4);
-    });
+      c.push(4)
+    })
 
-    expect(collection.all()).to.eql([1, 2, 3, 4]);
+    expect(collection.all()).to.eql([1, 2, 3, 4])
 
     collection.unless(true, (c) => {
-      c.push(5);
+      c.push(5)
     }, (c) => {
-      c.push(6);
-    });
+      c.push(6)
+    })
 
-    expect(collection.all()).to.eql([1, 2, 3, 4, 6]);
-  });
-};
+    expect(collection.all()).to.eql([1, 2, 3, 4, 6])
+  })
+})

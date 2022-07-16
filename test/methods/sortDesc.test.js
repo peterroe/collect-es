@@ -1,25 +1,26 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should sort the collection', () => {
-    const collection = collect([5, 3, 1, 2, 10, 4]);
-    const sorted = collection.sortDesc();
+    const collection = collect([5, 3, 1, 2, 10, 4])
+    const sorted = collection.sortDesc()
 
-    expect(sorted.all()).to.eql([10, 5, 4, 3, 2, 1]);
-  });
+    expect(sorted.all()).to.eql([10, 5, 4, 3, 2, 1])
+  })
 
   it('should sort a collection of characters', () => {
-    const collection = collect(['c', 'a', 'b']);
-    const sorted = collection.sortDesc();
+    const collection = collect(['c', 'a', 'b'])
+    const sorted = collection.sortDesc()
 
-    expect(sorted.all()).to.eql(['c', 'b', 'a']);
-  });
+    expect(sorted.all()).to.eql(['c', 'b', 'a'])
+  })
 
   it('should not modify the collection', () => {
-    const collection = collect([5, 3, 1, 2, 10, 4]);
-    const sorted = collection.sortDesc();
+    const collection = collect([5, 3, 1, 2, 10, 4])
+    const sorted = collection.sortDesc()
 
-    expect(sorted.all()).to.eql([10, 5, 4, 3, 2, 1]);
-    expect(collection.all()).to.eql([5, 3, 1, 2, 10, 4]);
-  });
-};
+    expect(sorted.all()).to.eql([10, 5, 4, 3, 2, 1])
+    expect(collection.all()).to.eql([5, 3, 1, 2, 10, 4])
+  })
+})

@@ -1,21 +1,22 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should return the minimum value in the collection', () => {
-    const collection = collect([1, 2, 3, 4, 5]);
-    const min = collection.min();
+    const collection = collect([1, 2, 3, 4, 5])
+    const min = collection.min()
 
-    expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
-    expect(min).to.eql(1);
-  });
+    expect(collection.all()).to.eql([1, 2, 3, 4, 5])
+    expect(min).to.eql(1)
+  })
 
   it('should work with negative values', () => {
-    const collection = collect([1, 2, 3, 4, 5, -5, -4, -3, -2 - 1]);
-    const min = collection.min();
+    const collection = collect([1, 2, 3, 4, 5, -5, -4, -3, -2 - 1])
+    const min = collection.min()
 
-    expect(collection.all()).to.eql([1, 2, 3, 4, 5, -5, -4, -3, -2 - 1]);
-    expect(min).to.eql(-5);
-  });
+    expect(collection.all()).to.eql([1, 2, 3, 4, 5, -5, -4, -3, -2 - 1])
+    expect(min).to.eql(-5)
+  })
 
   it('should return the minimum value of a given key', () => {
     const data = [{
@@ -28,11 +29,11 @@ module.exports = (it, expect, collect) => {
       worth: undefined,
     }, {
       unicorn: false,
-    }];
+    }]
 
-    const collection = collect(data);
-    const minKey = collection.min('worth');
-    expect(minKey).to.eql(79);
-    expect(collection.all()).to.eql(data);
-  });
-};
+    const collection = collect(data)
+    const minKey = collection.min('worth')
+    expect(minKey).to.eql(79)
+    expect(collection.all()).to.eql(data)
+  })
+})

@@ -1,21 +1,22 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should return the object values from the collection', () => {
     const collection = collect({
       a: 'xoxo',
       b: 'abab',
       c: '1337',
       1337: 12,
-    });
+    })
 
-    const values = collection.values();
+    const values = collection.values()
 
-    expect(values.all()).to.eql([12, 'xoxo', 'abab', '1337']);
+    expect(values.all()).to.eql([12, 'xoxo', 'abab', '1337'])
     expect(collection.all()).to.eql({
       a: 'xoxo', b: 'abab', c: '1337', 1337: 12,
-    });
-  });
+    })
+  })
 
   it('should not be recursive', () => {
     const data = {
@@ -33,7 +34,7 @@ module.exports = (it, expect, collect) => {
           name: 'George Lucas',
         },
       },
-    };
+    }
 
     expect(collect(data).values().all()).to.eql([
       {
@@ -50,6 +51,6 @@ module.exports = (it, expect, collect) => {
           name: 'George Lucas',
         },
       },
-    ]);
-  });
-};
+    ])
+  })
+})

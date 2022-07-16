@@ -1,27 +1,28 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should merge together the values of two arrays', () => {
-    const collection = collect(['Chair', 'Desk']);
-    const zipped = collection.zip([100, 200]);
+    const collection = collect(['Chair', 'Desk'])
+    const zipped = collection.zip([100, 200])
 
     expect(zipped.all()).to.eql([
       collect(['Chair', 100]),
       collect(['Desk', 200]),
-    ]);
+    ])
 
-    expect(collection.all()).to.eql(['Chair', 'Desk']);
-  });
+    expect(collection.all()).to.eql(['Chair', 'Desk'])
+  })
 
   it('should be able to zip with a collection', () => {
-    const collection = collect(['Chair', 'Desk']);
-    const zipped = collection.zip(collect([100, 200]));
+    const collection = collect(['Chair', 'Desk'])
+    const zipped = collection.zip(collect([100, 200]))
 
     expect(zipped.all()).to.eql([
       collect(['Chair', 100]),
       collect(['Desk', 200]),
-    ]);
+    ])
 
-    expect(collection.all()).to.eql(['Chair', 'Desk']);
-  });
-};
+    expect(collection.all()).to.eql(['Chair', 'Desk'])
+  })
+})

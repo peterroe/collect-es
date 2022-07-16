@@ -1,11 +1,12 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should skip n number of items', () => {
-    const collection = collect([1, 2, 3, 4, 5]);
+    const collection = collect([1, 2, 3, 4, 5])
 
-    expect(collection.skip(4).all()).to.eql([5]);
-  });
+    expect(collection.skip(4).all()).to.eql([5])
+  })
 
   it('should skip n number of items when object', () => {
     const collection = collect({
@@ -14,10 +15,10 @@ module.exports = (it, expect, collect) => {
       third: 'third',
       fourth: 'fourth',
       fifth: 'fifth',
-    });
+    })
 
     expect(collection.skip(4).all()).to.eql({
       fifth: 'fifth',
-    });
-  });
-};
+    })
+  })
+})

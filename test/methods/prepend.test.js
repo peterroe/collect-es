@@ -1,26 +1,27 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should prepend an item to the beginning of the collection', () => {
-    const collection = collect([1, 2, 3, 4, 5]);
+    const collection = collect([1, 2, 3, 4, 5])
 
-    expect(collection.prepend(0).all()).to.eql([0, 1, 2, 3, 4, 5]);
-    expect(collection.all()).to.eql([0, 1, 2, 3, 4, 5]);
-  });
+    expect(collection.prepend(0).all()).to.eql([0, 1, 2, 3, 4, 5])
+    expect(collection.all()).to.eql([0, 1, 2, 3, 4, 5])
+  })
 
   it('should work when collection is based on an object', () => {
     const collection2 = collect({
       firstname: 'Daniel',
-    });
+    })
 
     expect(collection2.prepend('Eckermann', 'lastname').all()).to.eql({
       firstname: 'Daniel',
       lastname: 'Eckermann',
-    });
+    })
 
     expect(collection2.all()).to.eql({
       lastname: 'Eckermann',
       firstname: 'Daniel',
-    });
-  });
-};
+    })
+  })
+})

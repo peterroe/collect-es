@@ -1,19 +1,20 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should return the matching values from collection', () => {
-    const collection = collect([1, 2, 3, 4, 5]);
-    const intersect = collection.intersect([1, 2, 3, 9]);
+    const collection = collect([1, 2, 3, 4, 5])
+    const intersect = collection.intersect([1, 2, 3, 9])
 
-    expect(intersect.all()).to.eql([1, 2, 3]);
-    expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
-  });
+    expect(intersect.all()).to.eql([1, 2, 3])
+    expect(collection.all()).to.eql([1, 2, 3, 4, 5])
+  })
 
   it('should accept a collection as an argument', () => {
-    const collection = collect([1, 2, 3, 4, 5]);
-    const intersect = collection.intersect(collect([1, 2, 3, 9]));
+    const collection = collect([1, 2, 3, 4, 5])
+    const intersect = collection.intersect(collect([1, 2, 3, 9]))
 
-    expect(intersect.all()).to.eql([1, 2, 3]);
-    expect(collection.all()).to.eql([1, 2, 3, 4, 5]);
-  });
-};
+    expect(intersect.all()).to.eql([1, 2, 3])
+    expect(collection.all()).to.eql([1, 2, 3, 4, 5])
+  })
+})

@@ -1,22 +1,23 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should join the collection', () => {
     expect(collect(['a', 'b', 'c']).join(', '))
-      .to.eql('a, b, c');
+      .to.eql('a, b, c')
 
     expect(collect(['a', 'b', 'c']).join(', ', ' and '))
-      .to.eql('a, b and c');
+      .to.eql('a, b and c')
 
     expect(collect(['a', 'b']).join(', ', ' and '))
-      .to.eql('a and b');
+      .to.eql('a and b')
 
     expect(collect(['a']).join(', ', ' and '))
-      .to.eql('a');
+      .to.eql('a')
 
     expect(collect([]).join(', ', ' and '))
-      .to.eql('');
-  });
+      .to.eql('')
+  })
 
   it('should join the object based collection', () => {
     expect(collect({
@@ -25,7 +26,7 @@ module.exports = (it, expect, collect) => {
       third: 'c',
     })
       .join(', '))
-      .to.eql('a, b, c');
+      .to.eql('a, b, c')
 
     expect(collect({
       first: 'a',
@@ -33,23 +34,23 @@ module.exports = (it, expect, collect) => {
       third: 'c',
     })
       .join(', ', ' and '))
-      .to.eql('a, b and c');
+      .to.eql('a, b and c')
 
     expect(collect({
       first: 'a',
       second: 'b',
     })
       .join(', ', ' and '))
-      .to.eql('a and b');
+      .to.eql('a and b')
 
     expect(collect({
       first: 'a',
     })
       .join(', ', ' and '))
-      .to.eql('a');
+      .to.eql('a')
 
     expect(collect({})
       .join(', ', ' and '))
-      .to.eql('');
-  });
-};
+      .to.eql('')
+  })
+})

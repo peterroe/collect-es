@@ -1,24 +1,25 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('doesnt replace anything when passing null', () => {
-    const data = [1, 2, [3, 4]];
-    const collection = collect(data);
+    const data = [1, 2, [3, 4]]
+    const collection = collect(data)
 
-    expect(collection.replaceRecursive(null).all()).to.eql(data);
-    expect(collection.all()).to.eql(data);
-  });
+    expect(collection.replaceRecursive(null).all()).to.eql(data)
+    expect(collection.all()).to.eql(data)
+  })
 
   it('can do recursive replace', () => {
-    const data = ['a', 'b', ['c', 'd']];
-    const collection = collect(data);
+    const data = ['a', 'b', ['c', 'd']]
+    const collection = collect(data)
 
     const replaced = collection.replaceRecursive({
       0: 'z',
       2: {
         1: 'e',
       },
-    });
+    })
 
     expect(replaced.all()).to.eql({
       0: 'z',
@@ -27,21 +28,21 @@ module.exports = (it, expect, collect) => {
         0: 'c',
         1: 'e',
       },
-    });
+    })
 
-    expect(collection.all()).to.eql(data);
-  });
+    expect(collection.all()).to.eql(data)
+  })
 
   it('can do recursive replace an array', () => {
-    const data = [1, 2, 3, [4, 5, 6]];
-    const collection = collect(data);
+    const data = [1, 2, 3, [4, 5, 6]]
+    const collection = collect(data)
 
     const replaced = collection.replaceRecursive([
       3,
       2,
       1,
       [4, 5, 6],
-    ]);
+    ])
 
     expect(replaced.all()).to.eql({
       0: 3,
@@ -52,15 +53,15 @@ module.exports = (it, expect, collect) => {
         1: 5,
         2: 6,
       },
-    });
-    expect(collection.all()).to.eql(data);
-  });
+    })
+    expect(collection.all()).to.eql(data)
+  })
 
   it('can do recursive replace even though source is bigger than the target', () => {
-    const data = [1, 2, 3, [4, 5, 6]];
-    const collection = collect(data);
+    const data = [1, 2, 3, [4, 5, 6]]
+    const collection = collect(data)
 
-    const replaced = collection.replaceRecursive([1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+    const replaced = collection.replaceRecursive([1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
 
     expect(replaced.all()).to.eql({
       0: 1,
@@ -73,15 +74,15 @@ module.exports = (it, expect, collect) => {
       7: 1,
       8: 1,
       9: 1,
-    });
-    expect(collection.all()).to.eql(data);
-  });
+    })
+    expect(collection.all()).to.eql(data)
+  })
 
   it('can do recursive replace even though source is smaller than the target', () => {
-    const data = [1, 2, 3, [4, 5, 6]];
-    const collection = collect(data);
+    const data = [1, 2, 3, [4, 5, 6]]
+    const collection = collect(data)
 
-    const replaced = collection.replaceRecursive([8]);
+    const replaced = collection.replaceRecursive([8])
 
     expect(replaced.all()).to.eql({
       0: 8,
@@ -92,15 +93,15 @@ module.exports = (it, expect, collect) => {
         1: 5,
         2: 6,
       },
-    });
-    expect(collection.all()).to.eql(data);
-  });
+    })
+    expect(collection.all()).to.eql(data)
+  })
 
   it('can do recursive replace with a string', () => {
-    const data = [1, 2, 3, [4, 5, 6]];
-    const collection = collect(data);
+    const data = [1, 2, 3, [4, 5, 6]]
+    const collection = collect(data)
 
-    const replaced = collection.replaceRecursive('x');
+    const replaced = collection.replaceRecursive('x')
 
     expect(replaced.all()).to.eql({
       0: 'x',
@@ -111,15 +112,15 @@ module.exports = (it, expect, collect) => {
         1: 5,
         2: 6,
       },
-    });
-    expect(collection.all()).to.eql(data);
-  });
+    })
+    expect(collection.all()).to.eql(data)
+  })
 
   it('can do recursive replace with an integer', () => {
-    const data = [1, 2, 3, [4, 5, 6]];
-    const collection = collect(data);
+    const data = [1, 2, 3, [4, 5, 6]]
+    const collection = collect(data)
 
-    const replaced = collection.replaceRecursive(11);
+    const replaced = collection.replaceRecursive(11)
 
     expect(replaced.all()).to.eql({
       0: 11,
@@ -130,20 +131,20 @@ module.exports = (it, expect, collect) => {
         1: 5,
         2: 6,
       },
-    });
-    expect(collection.all()).to.eql(data);
-  });
+    })
+    expect(collection.all()).to.eql(data)
+  })
 
   it('can do recursive replace with a collection', () => {
-    const data = ['a', 'b', ['c', 'd']];
-    const collection = collect(data);
+    const data = ['a', 'b', ['c', 'd']]
+    const collection = collect(data)
 
     const replaced = collection.replaceRecursive(collect({
       0: 'z',
       2: {
         1: 'e',
       },
-    }));
+    }))
 
     expect(replaced.all()).to.eql({
       0: 'z',
@@ -152,9 +153,9 @@ module.exports = (it, expect, collect) => {
         0: 'c',
         1: 'e',
       },
-    });
-    expect(collection.all()).to.eql(data);
-  });
+    })
+    expect(collection.all()).to.eql(data)
+  })
 
   it('should prove the readme test', () => {
     const collection = collect([
@@ -165,18 +166,18 @@ module.exports = (it, expect, collect) => {
         'Firmino',
         'Salah',
       ],
-    ]);
+    ])
 
     const replaced = collection.replaceRecursive({
       0: 'Gomez',
       2: { 1: 'Origi' },
-    });
+    })
 
     expect(replaced.all()).to.eql({
       0: 'Gomez',
       1: 'van Dijk',
       2: { 0: 'Mané', 1: 'Origi', 2: 'Salah' },
-    });
+    })
 
     expect(replaced.values().all()).to.eql([
       'Gomez',
@@ -186,6 +187,6 @@ module.exports = (it, expect, collect) => {
         1: 'Origi',
         2: 'Salah',
       },
-    ]);
-  });
-};
+    ])
+  })
+})

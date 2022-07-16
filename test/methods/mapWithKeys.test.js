@@ -1,6 +1,7 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should return an object containing a single key / value pair:', () => {
     const employees = [
       {
@@ -13,19 +14,19 @@ module.exports = (it, expect, collect) => {
         department: 'Marketing',
         email: 'jane@example.com',
       },
-    ];
+    ]
 
-    const collection = collect(employees);
+    const collection = collect(employees)
 
-    const keyed = collection.mapWithKeys(item => [item.email, item.name]);
+    const keyed = collection.mapWithKeys(item => [item.email, item.name])
 
     expect(keyed.all()).to.eql({
       'john@example.com': 'John',
       'jane@example.com': 'Jane',
-    });
+    })
 
-    expect(collection.all()).to.eql(employees);
-  });
+    expect(collection.all()).to.eql(employees)
+  })
 
   it('should also work with nested objects', () => {
     const players = {
@@ -39,16 +40,16 @@ module.exports = (it, expect, collect) => {
         department: 'Marketing',
         email: 'jane@example.com',
       },
-    };
+    }
 
-    const nestedObject = collect(players);
+    const nestedObject = collect(players)
 
-    const keyed = nestedObject.mapWithKeys(item => [item.email, item.name]);
+    const keyed = nestedObject.mapWithKeys(item => [item.email, item.name])
 
     expect(keyed.all()).to.eql({
       'john@example.com': 'John',
       'jane@example.com': 'Jane',
-    });
+    })
 
     expect(nestedObject.all()).to.eql({
       player1: {
@@ -61,6 +62,6 @@ module.exports = (it, expect, collect) => {
         department: 'Marketing',
         email: 'jane@example.com',
       },
-    });
-  });
-};
+    })
+  })
+})

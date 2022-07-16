@@ -1,6 +1,7 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should remove all object where name is not null', () => {
     const collection = collect([{
       name: 'Mohamed Salah',
@@ -8,14 +9,14 @@ module.exports = (it, expect, collect) => {
       name: null,
     }, {
       name: 'Sadio Mané',
-    }]);
+    }])
 
-    expect(collection.whereNull('name').all()).to.eql([{ name: null }]);
-  });
+    expect(collection.whereNull('name').all()).to.eql([{ name: null }])
+  })
 
   it('should remove all values that are not null', () => {
-    const collection = collect([1, 2, null, 3, 4]);
+    const collection = collect([1, 2, null, 3, 4])
 
-    expect(collection.whereNull().all()).to.eql([null]);
-  });
-};
+    expect(collection.whereNull().all()).to.eql([null])
+  })
+})

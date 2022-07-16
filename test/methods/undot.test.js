@@ -1,13 +1,14 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should undot keyed collection', () => {
     const collection = collect({
-      name: 'Taylor',
+      'name': 'Taylor',
       'meta.foo': 'bar',
       'meta.baz': ['boom', 'boom', 'boom'],
       'meta.bam.boom': 'bip',
-    });
+    })
 
     expect(collection.undot().all()).to.eql({
       name: 'Taylor',
@@ -18,15 +19,15 @@ module.exports = (it, expect, collect) => {
           boom: 'bip',
         },
       },
-    });
-  });
+    })
+  })
 
   it('should undot indexed collection', () => {
     const collection = collect({
       'foo.0': 'bar',
       'foo.1': 'baz',
       'foo.baz': 'boom',
-    });
+    })
 
     expect(collection.undot().all()).to.eql({
       foo: {
@@ -34,8 +35,8 @@ module.exports = (it, expect, collect) => {
         1: 'baz',
         baz: 'boom',
       },
-    });
-  });
+    })
+  })
 
   it('should undot documentation example', () => {
     const person = collect({
@@ -46,11 +47,11 @@ module.exports = (it, expect, collect) => {
       'address.suburb': 'Detroit',
       'address.state': 'MI',
       'address.postcode': '48219',
-    });
+    })
 
-    const undotted = person.undot();
+    const undotted = person.undot()
 
-    const all = undotted.all();
+    const all = undotted.all()
 
     const expected = {
       name: {
@@ -64,20 +65,20 @@ module.exports = (it, expect, collect) => {
         state: 'MI',
         postcode: '48219',
       },
-    };
+    }
 
-    expect(all).to.eql(expected);
-  });
+    expect(all).to.eql(expected)
+  })
 
   it('should ignore array based collections', () => {
     const data = [
       'name.first',
       'name.last',
       'xoxo',
-    ];
+    ]
 
-    const collection = collect(data);
+    const collection = collect(data)
 
-    expect(collection.undot().all()).to.eql(data);
-  });
-};
+    expect(collection.undot().all()).to.eql(data)
+  })
+})

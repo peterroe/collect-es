@@ -1,24 +1,21 @@
-'use strict';
+import { describe, expect, it } from 'vitest'
+import collect from '../../src/index.ts'
 
-module.exports = (it, expect, collect) => {
+describe('test', () => {
   it('should be iterable', () => {
-    let result = '';
+    let result = ''
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const item of collect([1, 2, 3, 4, 5])) {
-      result += item;
-    }
+    for (const item of collect([1, 2, 3, 4, 5]))
+      result += item
 
-    expect(result).to.eql('12345');
+    expect(result).to.eql('12345')
 
-    const result2 = [];
-    const clubs = collect([{ name: 'Liverpool' }, { name: 'Arsenal' }, { name: 'Chelsea' }]);
+    const result2 = []
+    const clubs = collect([{ name: 'Liverpool' }, { name: 'Arsenal' }, { name: 'Chelsea' }])
 
-    // eslint-disable-next-line no-restricted-syntax
-    for (const club of clubs) {
-      result2.push(club);
-    }
+    for (const club of clubs)
+      result2.push(club)
 
-    expect(result2).to.eql(clubs.all());
-  });
-};
+    expect(result2).to.eql(clubs.all())
+  })
+})

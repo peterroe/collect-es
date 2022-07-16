@@ -1,26 +1,22 @@
-
-
-const { isFunction } = require('../helpers/is');
+import { isFunction } from '../helpers/is'
 
 export default function last(fn, defaultValue) {
-  let { items } = this;
+  let { items } = this
 
-  if (isFunction(fn)) {
-    items = this.filter(fn).all();
-  }
+  if (isFunction(fn))
+    items = this.filter(fn).all()
 
   if ((Array.isArray(items) && !items.length) || (!Object.keys(items).length)) {
-    if (isFunction(defaultValue)) {
-      return defaultValue();
-    }
+    if (isFunction(defaultValue))
+      return defaultValue()
 
-    return defaultValue;
+    return defaultValue
   }
 
-  if (Array.isArray(items)) {
-    return items[items.length - 1];
-  }
-  const keys = Object.keys(items);
+  if (Array.isArray(items))
+    return items[items.length - 1]
 
-  return items[keys[keys.length - 1]];
+  const keys = Object.keys(items)
+
+  return items[keys[keys.length - 1]]
 }
