@@ -47,7 +47,7 @@ export default function flatten(depth) {
   }
 
   flat(this.items)
- /* eslint-disable no-unmodified-loop-conditio */
+  /* eslint-disable no-unmodified-loop-condition */
   while (!fullyFlattened && flattenDepth > 0)
     flat(collection)
 

@@ -24,30 +24,31 @@ export default function where(key, operator, value) {
         return nestedValue(item, key) === Number(comparisonValue)
           || nestedValue(item, key) === comparisonValue.toString()
 
-          case '===':
-            return nestedValue(item, key) === comparisonValue
-            
-          case '!=':
-          case '<>':
-            return nestedValue(item, key) !== Number(comparisonValue)
+      case '===':
+        return nestedValue(item, key) === comparisonValue
+
+      case '!=':
+      case '<>':
+        return nestedValue(item, key) !== Number(comparisonValue)
               && nestedValue(item, key) !== comparisonValue.toString()
-            
-          case '!==':
-            return nestedValue(item, key) !== comparisonValue
-              
-          case '<':
-            return nestedValue(item, key) < comparisonValue
-            
-          case '<=':
-            return nestedValue(item, key) <= comparisonValue
-            
-          case '>':
-            return nestedValue(item, key) > comparisonValue
-              
-          case '>=':
-            return nestedValue(item, key) >= comparisonValue
-          default:
+
+      case '!==':
+        return nestedValue(item, key) !== comparisonValue
+
+      case '<':
+        return nestedValue(item, key) < comparisonValue
+
+      case '<=':
+        return nestedValue(item, key) <= comparisonValue
+
+      case '>':
+        return nestedValue(item, key) > comparisonValue
+
+      case '>=':
+        return nestedValue(item, key) >= comparisonValue
+      default:
     }
+    return false
   })
 
   return new this.constructor(collection)
