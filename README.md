@@ -1,4 +1,6 @@
-<img src="./logo.svg" alt="collect.js">
+<p align="center">
+  <img src="./collect.svg" alt="collect.js">
+</p>
 
 > Convenient and dependency free wrapper for working with arrays and objects
 
