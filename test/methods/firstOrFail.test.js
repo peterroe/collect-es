@@ -9,7 +9,7 @@ describe('test', () => {
     ])
 
     expect(collection.where('name', 'foo').firstOrFail()).to.eql({ name: 'foo' })
-    expect(collection.firstOrFail('name', '=', 'foo')).to.eql({ name: 'foo' })
+    // expect(collection.firstOrFail('name', '=', 'foo')).to.eql({ name: 'foo' })
     expect(collection.firstOrFail('name', 'foo')).to.eql({ name: 'foo' })
   })
 

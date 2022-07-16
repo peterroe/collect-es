@@ -9,7 +9,7 @@ describe('test', () => {
     ])
 
     expect(collection.where('name', 'foo').sole()).to.deep.equal({ name: 'foo' })
-    expect(collection.sole('name', '=', 'foo')).to.deep.equal({ name: 'foo' })
+    // expect(collection.sole('name', '=', 'foo')).to.deep.equal({ name: 'foo' })
     expect(collection.sole('name', 'foo')).to.deep.equal({ name: 'foo' })
   })
 

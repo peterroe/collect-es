@@ -13,6 +13,8 @@ npm install collect-es
 #### Usage
 
 ```ts
+// example
+
 const collection = collect([
   { name: 'Desk', price: 200 },
   { name: 'Chair', price: 100 },
