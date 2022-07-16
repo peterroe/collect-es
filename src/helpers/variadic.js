@@ -5,9 +5,8 @@
  * @returns {Array}
  */
 export default function variadic(args) {
-  if (Array.isArray(args[0])) {
-    return args[0];
-  }
+  if (Array.isArray(args[0]))
+    return args[0]
 
-  return args;
+  return args
 }

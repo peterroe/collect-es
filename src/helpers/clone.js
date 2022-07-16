@@ -7,19 +7,20 @@
  * @returns {*}
  */
 export default function clone(items) {
-  let cloned;
+  let cloned
 
   if (Array.isArray(items)) {
-    cloned = [];
+    cloned = []
 
-    cloned.push(...items);
-  } else {
-    cloned = {};
+    cloned.push(...items)
+  }
+  else {
+    cloned = {}
 
     Object.keys(items).forEach((prop) => {
-      cloned[prop] = items[prop];
-    });
+      cloned[prop] = items[prop]
+    })
   }
 
-  return cloned;
+  return cloned
 }

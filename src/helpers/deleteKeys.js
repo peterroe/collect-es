@@ -1,4 +1,4 @@
-import variadic from './variadic';
+import variadic from './variadic'
 
 /**
  * Delete keys helper
@@ -11,7 +11,6 @@ import variadic from './variadic';
  */
 export default function deleteKeys(obj, ...keys) {
   variadic(keys).forEach((key) => {
-    // eslint-disable-next-line
-    delete obj[key];
-  });
+    delete obj[key]
+  })
 }

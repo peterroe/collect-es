@@ -7,15 +7,16 @@
  * @returns {*}
  */
 export default function values(items) {
-  const valuesArray = [];
+  const valuesArray = []
 
-  if (Array.isArray(items)) {
-    valuesArray.push(...items);
-  } else if (items.constructor.name === 'Collection') {
-    valuesArray.push(...items.all());
-  } else {
-    Object.keys(items).forEach(prop => valuesArray.push(items[prop]));
-  }
+  if (Array.isArray(items))
+    valuesArray.push(...items)
 
-  return valuesArray;
+  else if (items.constructor.name === 'Collection')
+    valuesArray.push(...items.all())
+
+  else
+    Object.keys(items).forEach(prop => valuesArray.push(items[prop]))
+
+  return valuesArray
 }
