@@ -4,17 +4,23 @@
 
 > Convenient and dependency free wrapper for working with arrays and objects
 
-### Installation
-
-#### NPM
+#### Install
 
 ```bash
 npm install collect-es
 ```
 
+#### Usage
+
+```ts
+import collect from 'collect-es'
+
+collect([1, 3, 3, 7]).avg();
+
+// 3.5
+```
+
 ### API
-- [Installation](#installation)
-  - [NPM](#npm)
 - [API](#api)
 - [Strictness and comparisons](#strictness-and-comparisons)
     - [Methods that have not been implemented:](#methods-that-have-not-been-implemented)
