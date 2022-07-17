@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "0.25.2",
-    "eslint": "8.18.0",
+    "eslint": "8.20.0",
     "esno": "0.16.3",
     "happy-dom": "^6.0.3",
     "np": "7.6.2",
